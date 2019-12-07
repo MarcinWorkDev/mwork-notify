@@ -27,6 +27,7 @@
         <e p="bin" t="ExcludeRecursive" />
         <e p="ClientApp" t="Include">
           <e p=".env" t="Include" />
+          <e p=".env.local.env" t="Include" />
           <e p=".gitignore" t="Include" />
           <e p="package-lock.json" t="Include" />
           <e p="package.json" t="Include" />
