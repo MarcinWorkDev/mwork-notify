@@ -1,8 +1,0 @@
-F:\repos\rider\mwork-notify\MWork.Notify\Core.Domain\bin\Debug\netcoreapp3.1\MWork.Notify.Core.Domain.deps.json
-F:\repos\rider\mwork-notify\MWork.Notify\Core.Domain\bin\Debug\netcoreapp3.1\MWork.Notify.Core.Domain.dll
-F:\repos\rider\mwork-notify\MWork.Notify\Core.Domain\bin\Debug\netcoreapp3.1\MWork.Notify.Core.Domain.pdb
-F:\repos\rider\mwork-notify\MWork.Notify\Core.Domain\obj\Debug\netcoreapp3.1\Core.Domain.csprojAssemblyReference.cache
-F:\repos\rider\mwork-notify\MWork.Notify\Core.Domain\obj\Debug\netcoreapp3.1\Core.Domain.AssemblyInfoInputs.cache
-F:\repos\rider\mwork-notify\MWork.Notify\Core.Domain\obj\Debug\netcoreapp3.1\Core.Domain.AssemblyInfo.cs
-F:\repos\rider\mwork-notify\MWork.Notify\Core.Domain\obj\Debug\netcoreapp3.1\MWork.Notify.Core.Domain.dll
-F:\repos\rider\mwork-notify\MWork.Notify\Core.Domain\obj\Debug\netcoreapp3.1\MWork.Notify.Core.Domain.pdb
