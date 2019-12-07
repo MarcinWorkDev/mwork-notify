@@ -33,15 +33,15 @@ Desktop.ini
 .DS_Store
 
 # Build results
-**/[Dd]ebug/
-**/[Dd]ebugPublic/
-**/[Rr]elease/
-**/[Rr]eleases/
-**/x64/
-**/x86/
-**/build/
-**/bld/
-**/bin/
-**/Bin/
-**/obj/
-**/Obj/
+[Dd]ebug/
+[Dd]ebugPublic/
+[Rr]elease/
+[Rr]eleases/
+x64/
+x86/
+build/
+bld/
+bin/
+Bin/
+obj/
+Obj/
