@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="RTProjectComponent">
+    <option name="rtExecutable" value="C:\Users\marci\AppData\Roaming\npm\rt" />
+    <option name="nodeInterpreter" value="F:\Development\Libs\node\node.exe" />
+    <option name="pluginEnabled" value="true" />
+    <option name="modules" value="commonjs" />
+  </component>
+</project>

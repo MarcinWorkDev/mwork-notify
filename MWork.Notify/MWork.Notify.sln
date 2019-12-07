@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core.Domain", "Core.Domain\Core.Domain.csproj", "{9714CD48-4E50-49AE-BCC5-C7F31420A26B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Presentation.Web.Client", "Presentation.Web.Client\Presentation.Web.Client.csproj", "{CCDE2F36-35EA-4788-AB02-2F8AB22F8CCF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9714CD48-4E50-49AE-BCC5-C7F31420A26B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9714CD48-4E50-49AE-BCC5-C7F31420A26B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9714CD48-4E50-49AE-BCC5-C7F31420A26B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9714CD48-4E50-49AE-BCC5-C7F31420A26B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CCDE2F36-35EA-4788-AB02-2F8AB22F8CCF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CCDE2F36-35EA-4788-AB02-2F8AB22F8CCF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CCDE2F36-35EA-4788-AB02-2F8AB22F8CCF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CCDE2F36-35EA-4788-AB02-2F8AB22F8CCF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

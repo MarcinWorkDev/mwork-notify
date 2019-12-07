@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v3.1",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v3.1": {
+      "MWork.Notify.Core.Domain/1.0.0": {
+        "runtime": {
+          "MWork.Notify.Core.Domain.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "MWork.Notify.Core.Domain/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
