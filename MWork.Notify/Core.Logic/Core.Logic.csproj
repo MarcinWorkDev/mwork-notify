@@ -2,9 +2,13 @@
 
     <PropertyGroup>
         <TargetFramework>netcoreapp3.1</TargetFramework>
-        <AssemblyName>MWork.Notify.Core.Services</AssemblyName>
-        <RootNamespace>MWork.Notify.Core.Services</RootNamespace>
+        <AssemblyName>MWork.Notify.Core.Logic</AssemblyName>
+        <RootNamespace>MWork.Notify.Core.Logic</RootNamespace>
     </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="MediatR" Version="7.0.0" />
+    </ItemGroup>
 
     <ItemGroup>
       <ProjectReference Include="..\Core.Domain\Core.Domain.csproj" />

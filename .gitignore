@@ -45,3 +45,6 @@ bin/
 Bin/
 obj/
 Obj/
+
+# Secure files
+Secure/

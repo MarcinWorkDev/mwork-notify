@@ -2,9 +2,9 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
-using MWork.Notify.Core.Services.Commands.Command;
+using MWork.Notify.Core.Logic.Commands.Command;
 
-namespace MWork.Notify.Core.Services.Commands.Handler
+namespace MWork.Notify.Core.Logic.Commands.Handler
 {
     public class SayHelloHandler : INotificationHandler<SayHelloCommand>
     {

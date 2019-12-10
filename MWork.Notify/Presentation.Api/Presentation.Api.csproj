@@ -9,10 +9,15 @@
     <ItemGroup>
       <PackageReference Include="MediatR" Version="7.0.0" />
       <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="7.0.0" />
+      <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\Core.Data\Core.Data.csproj" />
+      <ProjectReference Include="..\Core.Domain\Core.Domain.csproj" />
+      <ProjectReference Include="..\Core.Logic\Core.Logic.csproj" />
       <ProjectReference Include="..\Core.Services\Core.Services.csproj" />
+      <ProjectReference Include="..\Plugins.Dispatchers.Push\Plugins.Dispatchers.Push.csproj" />
     </ItemGroup>
 
 

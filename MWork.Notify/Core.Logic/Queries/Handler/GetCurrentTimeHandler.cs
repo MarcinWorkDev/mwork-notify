@@ -2,9 +2,9 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
-using MWork.Notify.Core.Services.Queries.Query;
+using MWork.Notify.Core.Logic.Queries.Query;
 
-namespace MWork.Notify.Core.Services.Queries.Handler
+namespace MWork.Notify.Core.Logic.Queries.Handler
 {
     public class GetCurrentTimeHandler : IRequestHandler<GetCurrentTimeQuery, DateTime>
     {

@@ -1,4 +1,4 @@
-namespace MWork.Notify.Core.Services.Commands.Command
+namespace MWork.Notify.Core.Logic.Commands.Command
 {
     public class SayHelloCommand : MediatR.INotification
     {
