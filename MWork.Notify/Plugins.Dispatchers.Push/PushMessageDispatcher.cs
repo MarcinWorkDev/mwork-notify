@@ -4,17 +4,13 @@ using System.Threading.Tasks;
 using FcmSharp;
 using FcmSharp.Requests;
 using FcmSharp.Settings;
-using MWork.Notify.Core.Domain.Abstractions;
-using MWork.Notify.Core.Domain.Abstractions.Repositories;
-using MWork.Notify.Core.Domain.Abstractions.Services;
-using MWork.Notify.Core.Domain.Models.Enums;
 using MWork.Notify.Plugins.Dispatchers.Push.Models;
 using Newtonsoft.Json;
 using Notification = MWork.Notify.Core.Domain.Models.Notification;
 
 namespace MWork.Notify.Plugins.Dispatchers.Push
 {
-    public class PushMessageDispatcher : INotificationDispatcher, IDisposable
+    public class PushMessageDispatcher :  IDisposable
     {
         private readonly FcmClient _fcmClient;
         private readonly PushMessageDispatcherOptions _options;
@@ -42,7 +38,7 @@ namespace MWork.Notify.Plugins.Dispatchers.Push
                 {
                     Message = new Message()
                     {
-                        Token = notification.Recipient,
+                        Token = notification.User,
                         Notification = new FcmSharp.Requests.Notification()
                         {
                             Title = notification.Title,
@@ -67,6 +63,16 @@ namespace MWork.Notify.Plugins.Dispatchers.Push
         public void Dispose()
         {
             _fcmClient?.Dispose();
+        }
+
+        public Task Queue(Notification notification)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task Queue(IEnumerable<Notification> notifications)
+        {
+            throw new NotImplementedException();
         }
     }
 }

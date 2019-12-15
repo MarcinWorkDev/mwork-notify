@@ -12,21 +12,25 @@ namespace MWork.Notify.Core.Logic.Commands.Handler
     {
         private readonly INotificationRepository _notificationRepository;
         private readonly INotificationBuilder _builder;
-        private readonly INotificationDispatcher _dispatcher;
+        private readonly INotifyQueue _queue;
         
-        public DispatchBasicMessageHandler(INotificationDispatcher dispatcher, INotificationBuilder builder, INotificationRepository notificationRepository)
+        public DispatchBasicMessageHandler(INotificationBuilder builder, INotificationRepository notificationRepository, INotifyQueue queue)
         {
-            _dispatcher = dispatcher;
             _builder = builder;
             _notificationRepository = notificationRepository;
+            _queue = queue;
         }
         
         public async Task Handle(DispatchBasicMessageCommand notification, CancellationToken cancellationToken)
         {
+            // Build notification
             var message = await _builder.BuildNotification(notification.Title, notification.Content, notification.Recipient);
+            
+            // Store notification in database
             await _notificationRepository.Save(message);
-            await _dispatcher.Dispatch(message);
-            await _notificationRepository.Save(message);
+            
+            // Queue notification
+            await _queue.Queue(message);
         }
     }
 }

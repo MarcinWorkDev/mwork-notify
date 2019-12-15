@@ -1,48 +1,25 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using MWork.Notify.Core.Domain.Models.Account;
 using MWork.Notify.Core.Domain.Models.Enums;
 
 namespace MWork.Notify.Core.Domain.Models
 {
     public class Notification
     {
-        public Guid Id { get; }
+        public Guid Id { get; set; }
         
-        public NotificationSource Source { get; }
+        public NotificationSource Source { get; set; }
         
-        public DateTime CreatedAtUtc { get; }
+        public DateTime CreatedAtUtc { get; set; }
         
-        public string Title { get; }
+        public string Title { get; set; }
         
-        public string Content { get; }
+        public string Content { get; set; }
         
-        public string Recipient { get; }
+        public User User { get; set; }
         
-        public DispatchStatus Status { get; set; }
-        
-        public string DispatchError { get; set; }
-        
-        public DateTime? DispatchedAtUtc { get; set; }
-
-        public Notification(string title, string content, string recipient, NotificationSource source = null)
-        {
-            if (string.IsNullOrWhiteSpace(title)) 
-                throw new ArgumentNullException(nameof(title));
-
-            if (string.IsNullOrWhiteSpace(content))
-                throw new ArgumentNullException(nameof(content));
-            
-            if (string.IsNullOrWhiteSpace(recipient))
-                throw new ArgumentNullException(nameof(recipient));
-            
-            Id = Guid.NewGuid();
-            Source = source;
-            CreatedAtUtc = DateTime.UtcNow;
-            Title = title;
-            Content = content;
-            Recipient = recipient;
-            Status = DispatchStatus.New;
-        }
+        public IEnumerable<NotificationDispatch> Dispatches { get; set; }
     }
 }

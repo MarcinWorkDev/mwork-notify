@@ -48,3 +48,7 @@ Obj/
 
 # Secure files
 Secure/
+secure/
+node_modules/
+.env
+dev-scripts/

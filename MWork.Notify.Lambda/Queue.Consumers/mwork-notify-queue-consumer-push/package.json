@@ -1,0 +1,8 @@
+{
+  "name": "mwork-notify-queue-consumer-push",
+  "version": "1.0.0",
+  "dependencies": {
+    "aws-sdk": "^2.590.0",
+    "firebase-admin": "^8.8.0"
+  }
+}

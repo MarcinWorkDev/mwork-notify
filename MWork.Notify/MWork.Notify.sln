@@ -14,6 +14,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Plugins.Dispatchers.Push", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core.Data", "Core.Data\Core.Data.csproj", "{D2D10198-91EF-4DDD-ACFB-2FC6B8CC2265}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Plugins.AWS.Queue", "Plugins.AWS.Queue\Plugins.AWS.Queue.csproj", "{4C22ED0B-CFA2-46BA-9BDC-C68339CC9617}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -48,5 +50,9 @@ Global
 		{D2D10198-91EF-4DDD-ACFB-2FC6B8CC2265}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D2D10198-91EF-4DDD-ACFB-2FC6B8CC2265}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D2D10198-91EF-4DDD-ACFB-2FC6B8CC2265}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4C22ED0B-CFA2-46BA-9BDC-C68339CC9617}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4C22ED0B-CFA2-46BA-9BDC-C68339CC9617}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4C22ED0B-CFA2-46BA-9BDC-C68339CC9617}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4C22ED0B-CFA2-46BA-9BDC-C68339CC9617}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

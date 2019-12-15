@@ -10,6 +10,8 @@ using MWork.Notify.Core.Domain.Abstractions.Repositories;
 using MWork.Notify.Core.Domain.Abstractions.Services;
 using MWork.Notify.Core.Logic;
 using MWork.Notify.Core.Services;
+using MWork.Notify.Plugins.AWS.Queue;
+using MWork.Notify.Plugins.AWS.Queue.Models;
 using MWork.Notify.Plugins.Dispatchers.Push;
 
 namespace MWork.Notify.Presentation.Api
@@ -29,10 +31,15 @@ namespace MWork.Notify.Presentation.Api
             services.AddSingleton<INotificationRepository, NotificationRepository>();
             
             services.AddSingleton<INotificationBuilder, NotificationBuilder>();
-            services.AddSingleton<INotificationDispatcher>(new PushMessageDispatcher(o =>
+            /*services.AddSingleton<INotificationDispatcher>(new PushMessageDispatcher(o =>
             {
                 o.Credentials = System.IO.File.ReadAllText("Secure/firebase-adminsdk.json");
-            }));
+            }));*/
+            services.Configure<NotifyQueueOptions>(o =>
+            {
+                o.NotificationQueueName = "mwork-notify-notification-queue"; // Move to config - eg. AWS SSM
+            });
+            services.AddSingleton<INotifyQueue, NotifyQueue>();
             
             services.AddMediatR(CoreServicesConstants.Assembly);
             

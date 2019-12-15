@@ -1,15 +1,11 @@
+using MWork.Notify.Core.Domain.Models.Settings;
+
 namespace MWork.Notify.Core.Domain.Models
 {
     public class NotificationSource
     {
-        public NotificationDefinition Definition { get; }
+        public NotifyTrigger Trigger { get; set; }
         
-        public dynamic Data { get; }
-
-        public NotificationSource(NotificationDefinition definition, dynamic data)
-        {
-            Definition = definition;
-            Data = data;
-        }
+        public dynamic Data { get; set; }
     }
 }
