@@ -6,7 +6,7 @@ namespace MWork.Notify.Core.Domain.Models.Settings
 {
     public class NotifyDefinition
     {
-        public Guid Id { get; set;  }
+        public string Id { get; set;  }
         
         public User User { get; set; }
         
@@ -14,7 +14,7 @@ namespace MWork.Notify.Core.Domain.Models.Settings
         
         public bool Enabled { get; set; }
         
-        public EndpointType EndpointType { get; set; }
+        public DeliveryMethod DeliveryMethod { get; set; }
         
         public string TitleTemplate { get; set; }
         

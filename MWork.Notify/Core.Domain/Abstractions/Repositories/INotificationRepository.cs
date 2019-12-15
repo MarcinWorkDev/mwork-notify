@@ -7,12 +7,12 @@ namespace MWork.Notify.Core.Domain.Abstractions.Repositories
 {
     public interface INotificationRepository
     {
-        Task<Notification> Get(Guid id);
+        Task<Notification> Get(string id);
 
-        Task<IEnumerable<Notification>> Get(Predicate<Notification> predicate = null);
-
+        Task<IEnumerable<Notification>> GetByUser(string userId, DateTime modifiedFrom, DateTime? modifiedTo);
+        
         Task Save(Notification notification);
 
-        Task Remove(Guid id);
+        Task SoftDelete(string id);
     }
 }

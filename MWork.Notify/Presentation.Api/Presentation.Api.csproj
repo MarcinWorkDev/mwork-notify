@@ -11,6 +11,7 @@
       <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="7.0.0" />
       <PackageReference Include="Microsoft.Extensions.Options" Version="3.1.0" />
       <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+      <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI" Version="4.0.1" />
     </ItemGroup>
 
     <ItemGroup>
@@ -20,6 +21,10 @@
       <ProjectReference Include="..\Core.Services\Core.Services.csproj" />
       <ProjectReference Include="..\Plugins.AWS.Queue\Plugins.AWS.Queue.csproj" />
       <ProjectReference Include="..\Plugins.Dispatchers.Push\Plugins.Dispatchers.Push.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <_ContentIncludedByDefault Remove="Secure\firebase-adminsdk.json" />
     </ItemGroup>
 
 

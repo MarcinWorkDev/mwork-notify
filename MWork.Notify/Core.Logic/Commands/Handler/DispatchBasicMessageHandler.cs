@@ -1,7 +1,6 @@
 using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
-using MWork.Notify.Core.Domain.Abstractions;
 using MWork.Notify.Core.Domain.Abstractions.Repositories;
 using MWork.Notify.Core.Domain.Abstractions.Services;
 using MWork.Notify.Core.Logic.Commands.Command;

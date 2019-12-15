@@ -1,13 +1,14 @@
 using System;
-using MWork.Notify.Core.Domain.Models.Enums;
+using MWork.Notify.Core.Data.Models.Abstractions;
+using MWork.Notify.Core.Domain.Models.Account;
 
-namespace MWork.Notify.Core.Domain.Models.Account
+namespace MWork.Notify.Core.Data.Models
 {
-    public class UserEndpoint
+    public class UserEntityEndpoint
     {
         public string Id { get; set; }
         
-        public DeliveryMethod DeliveryMethod { get; set; }
+        public int DeliveryMethod { get; set; }
         
         public string Name { get; set; }
         
@@ -21,6 +22,6 @@ namespace MWork.Notify.Core.Domain.Models.Account
         
         public bool IsActive { get; set; }
         
-        public UserDeviceInfo Device { get; set; }
+        public UserEntityEndpointDeviceInfo Device { get; set; }
     }
 }

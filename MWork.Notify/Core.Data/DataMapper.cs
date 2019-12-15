@@ -1,6 +1,7 @@
 using AutoMapper;
 using MWork.Notify.Core.Data.Models;
 using MWork.Notify.Core.Domain.Models;
+using MWork.Notify.Core.Domain.Models.Account;
 
 namespace MWork.Notify.Core.Data
 {
@@ -14,10 +15,23 @@ namespace MWork.Notify.Core.Data
             {
                 c.CreateMap<Notification, NotificationEntity>()
                     .ReverseMap();
+
+                c.CreateMap<QueueMessage, QueueMessageEntity>()
+                    .ReverseMap();
+
+                c.CreateMap<User, UserEntity>()
+                    .ReverseMap();
+
+                c.CreateMap<UserEndpoint, UserEntityEndpoint>()
+                    .ReverseMap();
+
+                c.CreateMap<UserPreferences, UserEntityPreferences>()
+                    .ReverseMap();
+
+                c.CreateMap<UserDeviceInfo, UserEntityEndpointDeviceInfo>()
+                    .ReverseMap();
             });
             
-            configuration.AssertConfigurationIsValid();
-
             MapperInternal = new AutoMapper.Mapper(configuration);
         }
 
@@ -30,10 +44,35 @@ namespace MWork.Notify.Core.Data
         {
             return MapperInternal.Map<NotificationEntity>(domain);
         }
+        
+        public static QueueMessage ToDomain(this QueueMessageEntity entity)
+        {
+            return MapperInternal.Map<QueueMessage>(entity);
+        }
+        
+        public static QueueMessageEntity ToEntity(this QueueMessage domain)
+        {
+            return MapperInternal.Map<QueueMessageEntity>(domain);
+        }
+        
+        public static User ToDomain(this UserEntity entity)
+        {
+            return MapperInternal.Map<User>(entity);
+        }
+        
+        public static UserEntity ToEntity(this User domain)
+        {
+            return MapperInternal.Map<UserEntity>(domain);
+        }
 
         public static TOut Map<TOut>(this object input)
         {
             return MapperInternal.Map<TOut>(input);
+        }
+
+        public static void ValidateConfiguration()
+        {
+            MapperInternal.ConfigurationProvider.AssertConfigurationIsValid();
         }
     }
 }

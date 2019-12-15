@@ -1,10 +1,15 @@
 using System;
 using System.Collections.Generic;
+using Amazon.DynamoDBv2.DataModel;
+using MWork.Notify.Core.Data.Models.Abstractions;
+using MWork.Notify.Core.Domain.Models.Account;
 
-namespace MWork.Notify.Core.Domain.Models.Account
+namespace MWork.Notify.Core.Data.Models
 {
-    public class User
+    [DynamoDBTable(nameof(UserEntity))]
+    public class UserEntity : IDeleteColumn, IModifiedColumn
     {
+        [DynamoDBHashKey]
         public string Id { get; set; }
         
         public DateTime CreatedAtUtc { get; set; }
@@ -17,9 +22,9 @@ namespace MWork.Notify.Core.Domain.Models.Account
         
         public string LastName { get; set; }
         
-        public UserPreferences Preferences { get; set; }
+        public UserEntityPreferences Preferences { get; set; }
         
-        public IEnumerable<UserEndpoint> Endpoints { get; set; }
+        public IEnumerable<UserEntityEndpoint> Endpoints { get; set; }
         
         public DateTime ModifiedAtUtc { get; set; }
         

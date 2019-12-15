@@ -1,8 +1,8 @@
 namespace MWork.Notify.Core.Domain.Models.Enums
 {
-    public enum EndpointType
+    public enum DeliveryMethod
     {
-        Device,
+        Push,
         Email
     }
 }
