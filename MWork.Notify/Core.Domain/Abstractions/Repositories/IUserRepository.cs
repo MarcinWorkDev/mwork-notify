@@ -1,4 +1,3 @@
-using System;
 using System.Threading.Tasks;
 using MWork.Notify.Core.Domain.Models.Account;
 

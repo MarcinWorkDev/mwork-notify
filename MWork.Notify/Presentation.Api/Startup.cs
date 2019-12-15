@@ -1,16 +1,9 @@
-using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using MWork.Notify.Core.Data;
-using MWork.Notify.Core.Data.Repositories;
-using MWork.Notify.Core.Domain.Abstractions.Repositories;
-using MWork.Notify.Core.Domain.Abstractions.Services;
-using MWork.Notify.Core.Logic;
-using MWork.Notify.Plugins.AWS.Queue;
-using MWork.Notify.Plugins.AWS.Queue.Models;
+using MWork.Notify.Presentation.Api.Framework.DI;
 
 namespace MWork.Notify.Presentation.Api
 {
@@ -26,16 +19,9 @@ namespace MWork.Notify.Presentation.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddSingleton<INotificationRepository, NotificationRepository>();
-            
-            services.Configure<NotifyQueueOptions>(o =>
-            {
-                o.NotificationQueuePushName = "mwork-notify-dispatcher-push"; // Move to config - eg. AWS SSM
-                o.NotificationQueueEmailName = "mwork-notify-dispatcher-email"; // Move to config - eg. AWS SSM
-            });
-            services.AddSingleton<INotifyQueue, NotifyQueue>();
-            
-            services.AddMediatR(CoreServicesConstants.Assembly);
+            services.RegisterRepositories();
+            services.RegisterQueuePublishers();
+            services.RegisterMediator();
             
             services.AddControllers();
         }

@@ -1,4 +1,3 @@
-using System;
 using MWork.Notify.Core.Domain.Models.Account;
 using MWork.Notify.Core.Domain.Models.Enums;
 

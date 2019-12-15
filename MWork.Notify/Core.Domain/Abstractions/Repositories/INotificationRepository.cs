@@ -9,7 +9,7 @@ namespace MWork.Notify.Core.Domain.Abstractions.Repositories
     {
         Task<Notification> Get(string id);
 
-        Task<IEnumerable<Notification>> GetByUser(string userId, DateTime modifiedFrom, DateTime? modifiedTo);
+        Task<IEnumerable<Notification>> GetByUser(string userId, DateTime modifiedFrom, DateTime? modifiedTo, bool includeDeleted = false);
         
         Task Save(Notification notification);
 

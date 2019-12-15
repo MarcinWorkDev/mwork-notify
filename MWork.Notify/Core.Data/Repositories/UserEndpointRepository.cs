@@ -6,13 +6,13 @@ using Amazon.DynamoDBv2.DocumentModel;
 using MWork.Notify.Core.Data.Models;
 using MWork.Notify.Core.Data.Repositories.Abstractions;
 using MWork.Notify.Core.Domain.Abstractions.Repositories;
-using MWork.Notify.Core.Domain.Models;
+using MWork.Notify.Core.Domain.Models.Account;
 
 namespace MWork.Notify.Core.Data.Repositories
 {
-    public class NotificationRepository : BaseRepository<NotificationEntity>, INotificationRepository
+    public class UserEndpointRepository : BaseRepository<UserEndpointEntity>, IUserEndpointRepository
     {
-        public async Task<Notification> Get(string id)
+        public async Task<UserEndpoint> Get(string id)
         {
             var notificationEntity = await base.Get(id);
             var notification = notificationEntity.ToDomain();
@@ -20,7 +20,7 @@ namespace MWork.Notify.Core.Data.Repositories
             return notification;
         }
 
-        public async Task<IEnumerable<Notification>> GetByUser(string userId, DateTime modifiedFrom, DateTime? modifiedTo, bool includeDeleted = false)
+        public async Task<IEnumerable<UserEndpoint>> GetByUser(string userId, DateTime modifiedFrom, DateTime? modifiedTo, bool includeDeleted = false)
         {
             var notificationEntities =
                 await Find(
@@ -45,7 +45,7 @@ namespace MWork.Notify.Core.Data.Repositories
             return notifications;
         }
 
-        public async Task Save(Notification notification)
+        public async Task Save(UserEndpoint notification)
         {
             var notificationEntity = notification.ToEntity();
 

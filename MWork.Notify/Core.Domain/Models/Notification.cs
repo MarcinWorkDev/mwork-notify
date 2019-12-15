@@ -19,7 +19,7 @@ namespace MWork.Notify.Core.Domain.Models
         
         public string Body { get; set; }
         
-        public dynamic Data { get; set; }
+        public IDictionary<string, string> Data { get; set; }
         
         public PriorityType Priority { get; set; }
         
@@ -28,6 +28,8 @@ namespace MWork.Notify.Core.Domain.Models
         public User User { get; set; }
         
         public IEnumerable<QueueMessage> QueueMessage { get; set; }
+        
+        public DateTime? ReadAtUtc { get; set; }
         
         public DateTime ModifiedAtUtc { get; set; }
         

@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 
 namespace MWork.Notify.Core.Domain.Models.Account
 {
@@ -18,8 +17,6 @@ namespace MWork.Notify.Core.Domain.Models.Account
         public string LastName { get; set; }
         
         public UserPreferences Preferences { get; set; }
-        
-        public IEnumerable<UserEndpoint> Endpoints { get; set; }
         
         public DateTime ModifiedAtUtc { get; set; }
         

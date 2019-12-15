@@ -22,7 +22,7 @@ namespace MWork.Notify.Core.Data
                 c.CreateMap<User, UserEntity>()
                     .ReverseMap();
 
-                c.CreateMap<UserEndpoint, UserEntityEndpoint>()
+                c.CreateMap<UserEndpoint, UserEndpointEntity>()
                     .ReverseMap();
 
                 c.CreateMap<UserPreferences, UserEntityPreferences>()
@@ -63,6 +63,16 @@ namespace MWork.Notify.Core.Data
         public static UserEntity ToEntity(this User domain)
         {
             return MapperInternal.Map<UserEntity>(domain);
+        }
+        
+        public static UserEndpoint ToDomain(this UserEndpointEntity entity)
+        {
+            return MapperInternal.Map<UserEndpoint>(entity);
+        }
+        
+        public static UserEndpointEntity ToEntity(this UserEndpoint domain)
+        {
+            return MapperInternal.Map<UserEndpointEntity>(domain);
         }
 
         public static TOut Map<TOut>(this object input)

@@ -7,6 +7,10 @@ namespace MWork.Notify.Core.Domain.Models.Account
     {
         public string Id { get; set; }
         
+        public string UserId { get; set; }
+        
+        public User User { get; set; }
+        
         public DeliveryMethod DeliveryMethod { get; set; }
         
         public string Name { get; set; }
@@ -22,5 +26,7 @@ namespace MWork.Notify.Core.Domain.Models.Account
         public bool IsActive { get; set; }
         
         public UserDeviceInfo Device { get; set; }
+        
+        public bool Deleted { get; set; }
     }
 }

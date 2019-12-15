@@ -20,7 +20,7 @@ namespace MWork.Notify.Core.Data.Repositories.Abstractions
             var dynamoDbClient = new AmazonDynamoDBClient();
             var config = new DynamoDBContextConfig()
             {
-                TableNamePrefix = GetType().Namespace + '.'
+                TableNamePrefix = CoreDataConstants.TableNamePrefix
             };
             
             _dbContext = new DynamoDBContext(dynamoDbClient, config);

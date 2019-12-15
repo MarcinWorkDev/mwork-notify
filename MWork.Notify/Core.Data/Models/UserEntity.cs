@@ -1,8 +1,6 @@
 using System;
-using System.Collections.Generic;
 using Amazon.DynamoDBv2.DataModel;
 using MWork.Notify.Core.Data.Models.Abstractions;
-using MWork.Notify.Core.Domain.Models.Account;
 
 namespace MWork.Notify.Core.Data.Models
 {
@@ -23,8 +21,6 @@ namespace MWork.Notify.Core.Data.Models
         public string LastName { get; set; }
         
         public UserEntityPreferences Preferences { get; set; }
-        
-        public IEnumerable<UserEntityEndpoint> Endpoints { get; set; }
         
         public DateTime ModifiedAtUtc { get; set; }
         

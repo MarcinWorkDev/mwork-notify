@@ -1,12 +1,19 @@
 using System;
+using Amazon.DynamoDBv2.DataModel;
 using MWork.Notify.Core.Data.Models.Abstractions;
-using MWork.Notify.Core.Domain.Models.Account;
 
 namespace MWork.Notify.Core.Data.Models
 {
-    public class UserEntityEndpoint
+    [DynamoDBTable(nameof(UserEndpointEntity))]
+    public class UserEndpointEntity : IDeleteColumn, IModifiedColumn
     {
+        public const string UserIndex = nameof(UserIndex) + "_GSI";
+        
+        [DynamoDBHashKey]
         public string Id { get; set; }
+        
+        [DynamoDBGlobalSecondaryIndexHashKey(UserIndex)]
+        public string UserId { get; set; }
         
         public int DeliveryMethod { get; set; }
         
@@ -16,6 +23,7 @@ namespace MWork.Notify.Core.Data.Models
         
         public DateTime CreatedAtUtc { get; set; }
         
+        [DynamoDBGlobalSecondaryIndexRangeKey(UserIndex)]
         public DateTime ModifiedAtUtc { get; set; }
         
         public bool IsValid { get; set; }
@@ -23,5 +31,7 @@ namespace MWork.Notify.Core.Data.Models
         public bool IsActive { get; set; }
         
         public UserEntityEndpointDeviceInfo Device { get; set; }
+        
+        public bool Deleted { get; set; }
     }
 }
