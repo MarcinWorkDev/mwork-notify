@@ -13,23 +13,23 @@ namespace MWork.Notify.Core.Data.Models
         [DynamoDBHashKey]
         public string Id { get; set; }
         
-        public string Source { get; set; }
-        
-        public string SourceId { get; set; }
-        
         [DynamoDBGlobalSecondaryIndexHashKey(UserIndex)]
         public string UserId { get; set; }
         
-        public DateTime CreatedAtUtc { get; set; }
+        public string Source { get; set; }
+        
+        public string SourceId { get; set; }
         
         public string Title { get; set; }
         
         public string Body { get; set; }
         
-        public IDictionary<string, string> Data { get; set; }
+        public Dictionary<string, string> Data { get; set; }
         
         public int Priority { get; set; }
         
+        public DateTime CreatedAtUtc { get; set; }
+
         [DynamoDBGlobalSecondaryIndexRangeKey(UserIndex)]
         public DateTime ModifiedAtUtc { get; set; }
         

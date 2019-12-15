@@ -1,6 +1,6 @@
 namespace MWork.Notify.Core.Data.Models
 {
-    public class UserEntityEndpointDeviceInfo
+    public class UserDeviceInfoEntity
     {
         public int Type { get; set; }
         

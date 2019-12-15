@@ -1,5 +1,6 @@
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
+using MWork.Notify.Core.Data;
 using MWork.Notify.Core.Data.Repositories;
 using MWork.Notify.Core.Domain.Abstractions.Repositories;
 using MWork.Notify.Core.Domain.Abstractions.Services;
@@ -18,13 +19,15 @@ namespace MWork.Notify.Presentation.Api.Framework.DI
             services.AddSingleton<IUserEndpointRepository, UserEndpointRepository>();
             services.AddSingleton<IUserRepository, UserRepository>();
             
+            DataMapper.ValidateConfiguration();
+            
             return services;
         }
         
         public static IServiceCollection RegisterQueuePublishers(this IServiceCollection services)
         {
             // Register factory
-            services.AddSingleton<INotifyQueuePublisherFactory, NotifyQueuePublisherFactory>();
+            services.AddScoped<INotifyQueuePublisherFactory, NotifyQueuePublisherFactory>();
             
             // Register publishers
             services.AddScoped<INotifyQueuePublisher, NotifyQueueEmailPublisher>(sp

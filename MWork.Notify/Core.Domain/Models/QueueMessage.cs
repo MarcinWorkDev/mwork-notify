@@ -10,7 +10,7 @@ namespace MWork.Notify.Core.Domain.Models
     {
         public string Id { get; set; }
         
-        public Notification Notification { get; set; }
+        public string NotificationId { get; set; }
         
         public DeliveryMethod DeliveryMethod { get; set; }
         
@@ -24,10 +24,6 @@ namespace MWork.Notify.Core.Domain.Models
         
         public string PublishError { get; set; }
         
-        public IEnumerable<UserEndpoint> Endpoints { get; set; }
-        
-        public bool Published => PublishedAtUtc.HasValue;
-
-        public bool Failed => PublishError.IsPresent();
+        public IList<string> Endpoints { get; set; }
     }
 }

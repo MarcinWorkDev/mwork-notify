@@ -30,7 +30,7 @@ namespace MWork.Notify.Plugins.AWS.Queue
             _sqsClient = new AmazonSQSClient(config);
         }
 
-        public async Task<QueueMessage> Queue(Notification notification, IList<UserEndpoint> endpoints)
+        public async Task<QueueMessage> Queue(Notification notification, params UserEndpoint[] endpoints)
         {
             if (notification == null)
             {
@@ -56,6 +56,7 @@ namespace MWork.Notify.Plugins.AWS.Queue
                 {
                     {"notificationId", new MessageAttributeValue()
                     {
+                        DataType = "String",
                         StringValue = notification.Id
                     }}
                 },
@@ -67,8 +68,8 @@ namespace MWork.Notify.Plugins.AWS.Queue
                 Id = Guid.NewGuid().ToString(),
                 CreatedAtUtc = DateTime.UtcNow,
                 DeliveryMethod = DeliveryMethod,
-                Endpoints = endpoints,
-                Notification = notification,
+                Endpoints = endpoints.Select(x => x.Id).ToList(),
+                NotificationId = notification.Id,
                 QueueName = QueueOptions.QueueName
             };
 

@@ -30,7 +30,7 @@ namespace MWork.Notify.Core.Data.Models
         
         public bool IsActive { get; set; }
         
-        public UserEntityEndpointDeviceInfo Device { get; set; }
+        public UserDeviceInfoEntity Device { get; set; }
         
         public bool Deleted { get; set; }
     }

@@ -37,12 +37,13 @@ function prepareRequest(record){
     }
 
     let tokens = Array.isArray(msg.tokens) ? msg.tokens : [ msg.tokens ];
-    let data = msg.data === undefined ? { } : msg.data;
+    let data = msg.data === undefined || msg.data === null ? { } : msg.data;
     data.notificationId = notificationId;
     let title = msg.title;
     let body = msg.body;
 
     return {
+        notificationId,
         tokens,
         data,
         title,

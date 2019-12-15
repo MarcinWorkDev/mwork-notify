@@ -9,8 +9,6 @@ namespace MWork.Notify.Core.Domain.Models.Account
         
         public string UserId { get; set; }
         
-        public User User { get; set; }
-        
         public DeliveryMethod DeliveryMethod { get; set; }
         
         public string Name { get; set; }

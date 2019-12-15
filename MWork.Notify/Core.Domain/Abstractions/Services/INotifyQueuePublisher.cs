@@ -16,6 +16,6 @@ namespace MWork.Notify.Core.Domain.Abstractions.Services
         /// <param name="notification"></param>
         /// <param name="endpoints"></param>
         /// <returns></returns>
-        Task<QueueMessage> Queue(Notification notification, IList<UserEndpoint> endpoints);
+        Task<QueueMessage> Queue(Notification notification, params UserEndpoint[] endpoints);
     }
 }

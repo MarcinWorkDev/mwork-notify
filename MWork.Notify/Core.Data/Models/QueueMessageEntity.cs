@@ -28,6 +28,6 @@ namespace MWork.Notify.Core.Data.Models
         
         public string PublishError { get; set; }
         
-        public IEnumerable<string> Endpoints { get; set; }
+        public List<string> Endpoints { get; set; }
     }
 }

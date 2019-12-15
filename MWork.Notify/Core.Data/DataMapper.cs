@@ -5,7 +5,7 @@ using MWork.Notify.Core.Domain.Models.Account;
 
 namespace MWork.Notify.Core.Data
 {
-    internal static class DataMapper
+    public static class DataMapper
     {
         private static readonly AutoMapper.Mapper MapperInternal;
         
@@ -25,10 +25,10 @@ namespace MWork.Notify.Core.Data
                 c.CreateMap<UserEndpoint, UserEndpointEntity>()
                     .ReverseMap();
 
-                c.CreateMap<UserPreferences, UserEntityPreferences>()
+                c.CreateMap<UserPreferences, UserPreferencesEntity>()
                     .ReverseMap();
 
-                c.CreateMap<UserDeviceInfo, UserEntityEndpointDeviceInfo>()
+                c.CreateMap<UserDeviceInfo, UserDeviceInfoEntity>()
                     .ReverseMap();
             });
             
