@@ -4,6 +4,7 @@
         <TargetFramework>netcoreapp3.1</TargetFramework>
         <AssemblyName>MWork.Notify.Core.Logic</AssemblyName>
         <RootNamespace>MWork.Notify.Core.Logic</RootNamespace>
+        <LangVersion>8</LangVersion>
     </PropertyGroup>
 
     <ItemGroup>

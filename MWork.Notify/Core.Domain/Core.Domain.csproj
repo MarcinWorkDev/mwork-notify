@@ -4,6 +4,7 @@
         <TargetFramework>netcoreapp3.1</TargetFramework>
         <AssemblyName>MWork.Notify.Core.Domain</AssemblyName>
         <RootNamespace>MWork.Notify.Core.Domain</RootNamespace>
+        <LangVersion>8</LangVersion>
     </PropertyGroup>
 
 </Project>

@@ -4,6 +4,7 @@
         <TargetFramework>netcoreapp3.1</TargetFramework>
         <AssemblyName>MWork.Notify.Plugins.AWS.Queue</AssemblyName>
         <RootNamespace>MWork.Notify.Plugins.AWS.Queue</RootNamespace>
+        <LangVersion>8</LangVersion>
     </PropertyGroup>
 
     <ItemGroup>

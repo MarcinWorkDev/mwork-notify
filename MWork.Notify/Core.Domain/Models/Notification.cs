@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using MWork.Notify.Core.Domain.Models.Account;
 using MWork.Notify.Core.Domain.Models.Enums;
 
 namespace MWork.Notify.Core.Domain.Models
