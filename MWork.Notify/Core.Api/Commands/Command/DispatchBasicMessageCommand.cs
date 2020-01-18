@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using MediatR;
 
-namespace MWork.Notify.Core.Logic.Commands.Command
+namespace MWork.Notify.Core.Api.Commands.Command
 {
     public class DispatchBasicMessageCommand : INotification
     {

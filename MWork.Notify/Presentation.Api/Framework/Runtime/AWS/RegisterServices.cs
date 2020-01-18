@@ -7,7 +7,7 @@ using MWork.Notify.Plugins.AWS.Data.Repositories;
 using MWork.Notify.Plugins.AWS.Queue;
 using MWork.Notify.Plugins.AWS.Queue.Models;
 
-namespace MWork.Notify.Core.Api.Framework.Runtime.AWS
+namespace MWork.Notify.Presentation.Api.Framework.Runtime.AWS
 {
     internal static class RegisterServices
     {

@@ -2,14 +2,14 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
+using MWork.Notify.Core.Api.Commands.Command;
 using MWork.Notify.Core.Domain.Abstractions.Repositories;
 using MWork.Notify.Core.Domain.Abstractions.Services;
 using MWork.Notify.Core.Domain.Models;
 using MWork.Notify.Core.Domain.Models.Account;
 using MWork.Notify.Core.Domain.Models.Enums;
-using MWork.Notify.Core.Logic.Commands.Command;
 
-namespace MWork.Notify.Core.Logic.Commands.Handler
+namespace MWork.Notify.Core.Api.Commands.Handler
 {
     public class DispatchBasicMessageHandler : INotificationHandler<DispatchBasicMessageCommand>
     {

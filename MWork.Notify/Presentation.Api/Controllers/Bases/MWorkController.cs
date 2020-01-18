@@ -1,7 +1,7 @@
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
-namespace MWork.Notify.Core.Api.Controllers.Bases
+namespace MWork.Notify.Presentation.Api.Controllers.Bases
 {
     [ApiController]
     [Route("api/[controller]")]

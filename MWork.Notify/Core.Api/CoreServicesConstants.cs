@@ -1,6 +1,6 @@
 using System.Reflection;
 
-namespace MWork.Notify.Core.Logic
+namespace MWork.Notify.Core.Api
 {
     public static class CoreServicesConstants
     {

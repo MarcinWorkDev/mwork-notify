@@ -1,7 +1,7 @@
 using MediatR;
-using MWork.Notify.Core.Api.Controllers.Bases;
+using MWork.Notify.Presentation.Api.Controllers.Bases;
 
-namespace MWork.Notify.Core.Api.Controllers
+namespace MWork.Notify.Presentation.Api.Controllers
 {
     public class TestController : MWorkController
     {

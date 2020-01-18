@@ -1,10 +1,10 @@
 using System.Threading.Tasks;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using MWork.Notify.Core.Api.Controllers.Bases;
-using MWork.Notify.Core.Logic.Commands.Command;
+using MWork.Notify.Core.Api.Commands.Command;
+using MWork.Notify.Presentation.Api.Controllers.Bases;
 
-namespace MWork.Notify.Core.Api.Controllers
+namespace MWork.Notify.Presentation.Api.Controllers
 {
     public class NotificationController : MWorkController
     {

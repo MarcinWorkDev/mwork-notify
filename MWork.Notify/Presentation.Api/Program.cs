@@ -1,9 +1,9 @@
 using System;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
-using MWork.Notify.Core.Api.Framework.Runtime.AWS;
+using MWork.Notify.Presentation.Api.Framework.Runtime.AWS;
 
-namespace MWork.Notify.Core.Api
+namespace MWork.Notify.Presentation.Api
 {
     public class Program
     {

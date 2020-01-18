@@ -4,7 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 using MWork.Notify.Core.Domain.Abstractions.Services;
 using MWork.Notify.Core.Domain.Models.Enums;
 
-namespace MWork.Notify.Core.Api.Framework
+namespace MWork.Notify.Presentation.Api.Framework
 {
     public class NotifyQueuePublisherFactory : INotifyQueuePublisherFactory
     {

@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Hosting;
 
-namespace MWork.Notify.Core.Api.Framework.Runtime.AWS
+namespace MWork.Notify.Presentation.Api.Framework.Runtime.AWS
 {
     public class LambdaEntryPoint<TStartup> : Amazon.Lambda.AspNetCoreServer.APIGatewayProxyFunction where TStartup : class
     {

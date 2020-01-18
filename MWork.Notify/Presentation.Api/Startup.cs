@@ -4,13 +4,12 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using MWork.Notify.Core.Api.Framework;
-using MWork.Notify.Core.Api.Framework.Runtime;
-using MWork.Notify.Core.Api.Framework.Runtime.AWS;
+using MWork.Notify.Core.Api;
 using MWork.Notify.Core.Domain.Abstractions.Services;
-using MWork.Notify.Core.Logic;
+using MWork.Notify.Presentation.Api.Framework;
+using MWork.Notify.Presentation.Api.Framework.Runtime.AWS;
 
-namespace MWork.Notify.Core.Api
+namespace MWork.Notify.Presentation.Api
 {
     public class Startup
     {

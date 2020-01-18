@@ -5,7 +5,7 @@ using Amazon.Lambda.Core;
 using Amazon.Lambda.RuntimeSupport;
 using Amazon.Lambda.Serialization.Json;
 
-namespace MWork.Notify.Core.Api.Framework.Runtime.AWS
+namespace MWork.Notify.Presentation.Api.Framework.Runtime.AWS
 {
     public static class AwsRuntime
     {
