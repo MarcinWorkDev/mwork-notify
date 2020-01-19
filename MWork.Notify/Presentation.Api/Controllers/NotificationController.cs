@@ -1,7 +1,7 @@
 using System.Threading.Tasks;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using MWork.Notify.Core.Api.Commands.Command;
+using MWork.Notify.Core.Api.Commands;
 using MWork.Notify.Presentation.Api.Controllers.Bases;
 
 namespace MWork.Notify.Presentation.Api.Controllers

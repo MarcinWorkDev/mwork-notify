@@ -2,29 +2,29 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
-using MWork.Notify.Core.Api.Commands.Command;
+using MWork.Notify.Core.Api.Commands;
 using MWork.Notify.Core.Domain.Abstractions.Repositories;
 using MWork.Notify.Core.Domain.Abstractions.Services;
 using MWork.Notify.Core.Domain.Models;
 using MWork.Notify.Core.Domain.Models.Account;
 using MWork.Notify.Core.Domain.Models.Enums;
 
-namespace MWork.Notify.Core.Api.Commands.Handler
+namespace MWork.Notify.Core.Api.Handlers
 {
-    public class DispatchBasicMessageHandler : INotificationHandler<DispatchBasicMessageCommand>
+    public class DispatchBasicMessageCommandHandler : AsyncRequestHandler<DispatchBasicMessageCommand>
     {
         private readonly INotificationRepository _notificationRepository;
         private readonly IQueueMessageRepository _queueMessageRepository;
         private readonly INotifyQueuePublisherFactory _queuePublisherFactory;
         
-        public DispatchBasicMessageHandler(INotificationRepository notificationRepository, INotifyQueuePublisherFactory queuePublisherFactory, IQueueMessageRepository queueMessageRepository)
+        public DispatchBasicMessageCommandHandler(INotificationRepository notificationRepository, INotifyQueuePublisherFactory queuePublisherFactory, IQueueMessageRepository queueMessageRepository)
         {
             _notificationRepository = notificationRepository;
             _queuePublisherFactory = queuePublisherFactory;
             _queueMessageRepository = queueMessageRepository;
         }
         
-        public async Task Handle(DispatchBasicMessageCommand message, CancellationToken cancellationToken)
+        protected override async Task Handle(DispatchBasicMessageCommand message, CancellationToken cancellationToken)
         {
             var notification = new Notification()
             {

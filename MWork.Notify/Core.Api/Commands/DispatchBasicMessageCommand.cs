@@ -1,9 +1,9 @@
 using System.Collections.Generic;
 using MediatR;
 
-namespace MWork.Notify.Core.Api.Commands.Command
+namespace MWork.Notify.Core.Api.Commands
 {
-    public class DispatchBasicMessageCommand : INotification
+    public class DispatchBasicMessageCommand : IRequest
     {
         public string UserId { get; set; }
         public string Token { get; set; }
