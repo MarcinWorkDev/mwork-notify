@@ -10,13 +10,38 @@ tags:
   - name: "template"
     description: "Notification templates"
 paths:
+  /notification:
+    parameters:
+      - $ref: '#/components/parameters/headerMessageId'
+      - $ref: '#/components/parameters/headerTimestamp'
+      - $ref: '#/components/parameters/cursor'
+      - $ref: '#/components/parameters/limit'
+    get:
+      tags:
+        - "notification"
+      summary: "Get notifications"
+      responses:
+        200:
+          description: "Notifications"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Notifications'
+        400:
+          $ref: '#/components/responses/400'
+        401:
+          $ref: '#/components/responses/401'
+        403:
+          $ref: '#/components/responses/403'
+        500:
+          $ref: '#/components/responses/500'
   /notification/{id}:
     parameters:
       - $ref: '#/components/parameters/headerMessageId'
       - $ref: '#/components/parameters/headerTimestamp'
       - $ref: '#/components/parameters/headerIfNoneMatch'
       - in: path
-          name: id
+        name: id
         required: true
         description: "Notification ID"
         schema:
@@ -88,29 +113,6 @@ paths:
           $ref: '#/components/responses/404'
         500:
           $ref: '#/components/responses/500'
-  /notification:
-    parameters:
-      - $ref: '#/components/parameters/headerMessageId'
-      - $ref: '#/components/parameters/headerTimestamp'
-    get:
-      tags:
-        - "notification"
-      summary: "Get notifications"
-      responses:
-        200:
-          description: "Notifications"
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Notifications'
-        400:
-          $ref: '#/components/responses/400'
-        401:
-          $ref: '#/components/responses/401'
-        403:
-          $ref: '#/components/responses/403'
-        500:
-          $ref: '#/components/responses/500'
 security:
   - ApiKeyAuth: []
 components:
@@ -144,6 +146,18 @@ components:
       name: if-none-match
       schema:
         type: string
+    cursor:
+      in: query
+      required: false
+      name: cursor
+      schema:
+        type: string
+    limit:
+      in: query
+      required: false
+      name: limit
+      schema:
+        type: string
   schemas:
     ApiError:
       type: "object"
@@ -164,13 +178,20 @@ components:
     Notification:
       type: object
       properties:
-        Id:
+        id:
           description: "Notification id"
           type: string
     Notifications:
-      type: array
-      items:
-        $ref: '#/components/schemas/Notification'
+      type: object
+      properties:
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Notification'
+        cursor_next:
+          type: string
+        cursor_prev:
+          type: string
   responses:
     201:
       description: "Accepted"

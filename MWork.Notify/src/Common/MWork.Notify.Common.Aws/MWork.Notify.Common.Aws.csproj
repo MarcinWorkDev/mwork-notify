@@ -1,0 +1,16 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>netcoreapp3.1</TargetFramework>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="AWSSDK.DynamoDBv2" Version="3.3.104.24" />
+      <PackageReference Include="AWSSDK.SQS" Version="3.3.102.61" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\MWork.Notify.Common.CrossCutting\MWork.Notify.Common.CrossCutting.csproj" />
+    </ItemGroup>
+
+</Project>
