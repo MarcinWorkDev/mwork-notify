@@ -9,9 +9,11 @@ namespace MWork.Notify.Services.Messages.Repositories
     {
         Task<Message> Get(string id);
 
-        Task<IEnumerable<Message>> GetByUser(string userId, DateTime modifiedFrom, DateTime? modifiedTo, bool includeDeleted = false);
+        Task<IEnumerable<Message>> GetByUser(string userId, DateTime modifiedFrom, DateTime? modifiedTo);
         
-        Task Save(Message message);
+        Task Create(Message message);
+        
+        Task Update(Message message);
 
         Task SoftDelete(string id);
     }

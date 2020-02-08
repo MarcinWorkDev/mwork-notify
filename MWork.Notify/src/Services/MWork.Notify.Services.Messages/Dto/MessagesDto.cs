@@ -1,10 +1,11 @@
 using System.Collections.Generic;
-using MWork.Notify.Common.Api.Models;
 
 namespace MWork.Notify.Services.Messages.Dto
 {
-    public class MessagesDto : CursorDto
+    public class MessagesDto
     {
         public List<MessageDto> Results { get; set; }
+        
+        public CursorDto Cursor { get; set; }
     }
 }

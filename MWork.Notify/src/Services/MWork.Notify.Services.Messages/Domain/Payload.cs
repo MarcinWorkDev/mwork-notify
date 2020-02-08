@@ -5,7 +5,7 @@ namespace MWork.Notify.Services.Messages.Domain
 {
     public class Payload
     {
-        public Category Category { get; set; }
+        public string CategoryId { get; set; }
         
         public string Title { get; set; }
         

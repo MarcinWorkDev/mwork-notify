@@ -1,9 +1,0 @@
-using System.Reflection;
-
-namespace MWork.Notify.Core.Api
-{
-    public static class CoreServicesConstants
-    {
-        public static Assembly Assembly => typeof(CoreServicesConstants).GetTypeInfo().Assembly;
-    }
-}

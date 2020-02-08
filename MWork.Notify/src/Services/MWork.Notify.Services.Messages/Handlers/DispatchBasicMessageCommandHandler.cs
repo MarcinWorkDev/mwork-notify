@@ -37,7 +37,7 @@ namespace MWork.Notify.Services.Messages.Handlers
             };
             
             // Store notification in database
-            await _messageRepository.Save(message);
+            await _messageRepository.Create(message);
             
             // Queue notifications
             command?.Channels?

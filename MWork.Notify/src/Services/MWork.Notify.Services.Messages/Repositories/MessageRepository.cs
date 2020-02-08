@@ -1,63 +1,55 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
-using Amazon.DynamoDBv2.DocumentModel;
-using MWork.Notify.Common.Aws.DynamoDb;
+using MongoDB.Driver;
 using MWork.Notify.Services.Messages.Domain;
-using MWork.Notify.Services.Messages.Repositories.Models;
 
 namespace MWork.Notify.Services.Messages.Repositories
 {
-    internal class MessageRepository : BaseRepository<MessageEntity>, IMessageRepository
+    internal class MessageRepository : IMessageRepository
     {
-        public MessageRepository() : base(ServiceConstants.TableNamePrefix)
+        private readonly IMongoCollection<Message> _collection;
+
+        public MessageRepository(IMongoClient client)
         {
+            var database = client.GetDatabase("notify");
+            _collection = database.GetCollection<Message>("messages");
         }
         
         public async Task<Message> Get(string id)
         {
-            var notificationEntity = await base.Get(id);
-            var notification = notificationEntity.ToDomain();
-
-            return notification;
+            var found = await _collection.FindAsync(x => x.Id == id);
+            return await found.FirstOrDefaultAsync();
         }
 
-        public async Task<IEnumerable<Message>> GetByUser(string userId, DateTime modifiedFrom, DateTime? modifiedTo, bool includeDeleted = false)
+        public async Task<IEnumerable<Message>> GetByUser(string userId, DateTime modifiedFrom, DateTime? modifiedTo)
         {
-            var notificationEntities =
-                await Find(
-                    userId,
-                    new object[]
-                    {
-                        modifiedFrom,
-                        modifiedTo ?? DateTime.UtcNow
-                    },
-                    MessageEntity.UserIndex,
-                    QueryOperator.Between);
+            var found = await _collection.FindAsync(x => x.UserId == userId
+                                                         && x.ModifiedAtUtc > modifiedFrom
+                                                         && x.ModifiedAtUtc <= (modifiedTo ?? DateTime.UtcNow));
 
-            var notifications = notificationEntities
-                .Select(x => x.ToDomain())
-                .ToList();
-
-            if (includeDeleted == false)
-            {
-                notifications.RemoveAll(x => x.Deleted);
-            }
-            
-            return notifications;
+            return found.ToEnumerable();
         }
 
-        public async Task Save(Message message)
+        public async Task Create(Message message)
         {
-            var notificationEntity = message.ToEntity();
-
-            await base.Put(notificationEntity);
+            message.CreatedAtUtc = DateTime.UtcNow;
+            message.ModifiedAtUtc = message.CreatedAtUtc;
+            await _collection.InsertOneAsync(message);
+        }
+        
+        public async Task Update(Message message)
+        {
+            message.ModifiedAtUtc = DateTime.UtcNow;
+            await _collection.ReplaceOneAsync(x => x.Id == message.Id, message);
         }
 
         public async Task SoftDelete(string id)
         {
-            await base.Delete(id, true);
+            var update = Builders<Message>.Update
+                .Set(x => x.ModifiedAtUtc, DateTime.UtcNow)
+                .Set(x => x.Deleted, true);
+            await _collection.UpdateOneAsync(x => x.Id == id, update);
         }
     }
 }
