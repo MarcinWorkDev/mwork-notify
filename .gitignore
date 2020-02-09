@@ -52,3 +52,6 @@ secure/
 node_modules/
 .env
 dev-scripts/
+
+# Settings
+launchSettings.json
