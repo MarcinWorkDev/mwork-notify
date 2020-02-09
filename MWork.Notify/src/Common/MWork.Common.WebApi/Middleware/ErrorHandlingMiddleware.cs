@@ -10,6 +10,9 @@ namespace MWork.Common.WebApi.Middleware
 {
     public class ErrorHandlingMiddleware : IMiddleware
     {
+        public const string DefaultErrorMessage = "An unexpected error occurred";
+        public const int DefaultErrorStatusCode = (int)HttpStatusCode.InternalServerError;
+        
         private readonly ILogger<ErrorHandlingMiddleware> _logger;
 
         public ErrorHandlingMiddleware(ILogger<ErrorHandlingMiddleware> logger)
@@ -27,14 +30,14 @@ namespace MWork.Common.WebApi.Middleware
             {
                 _logger.LogError(ex, ex.Message);
 
-                var httpStatusCode = (int) HttpStatusCode.InternalServerError;
-                var httpErrorMessage = "An unexpected error occurred";
+                var httpStatusCode = DefaultErrorStatusCode;
+                var httpErrorMessage = DefaultErrorMessage;
                 
                 if (ex.Data["HttpResponseSetStatus"] is int statusCode)
                 {
-                    if (Enum.TryParse<HttpStatusCode>(statusCode.ToString(), out var httpStatus))
+                    if (Enum.IsDefined(typeof(HttpStatusCode), statusCode))
                     {
-                        httpStatusCode = (int)httpStatus;
+                        httpStatusCode = statusCode;
                     }
                 }
                 
