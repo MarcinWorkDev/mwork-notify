@@ -7,18 +7,17 @@ namespace MWork.Common.WebApi.Runtime
 {
     public static class MWorkNotifyRuntime<TStartup> where TStartup : class
     {
-        // TODO: Add WindowsService, Docker
         public static void Run(string[] args) 
         {
-            if (string.IsNullOrEmpty(Environment.GetEnvironmentVariable("AWS_LAMBDA_FUNCTION_NAME")))
-            {
-                // Use default runtime
-                RunAsDefault(args);
-            }
-            else
+            if (string.IsNullOrEmpty(Environment.GetEnvironmentVariable("AWS_LAMBDA_FUNCTION_NAME")) == false)
             {
                 // Use Lambda AWS runtime
                 AwsLambdaRuntime.Run<TStartup>(args);
+            }
+            else
+            {
+                // Use default runtime
+                RunAsDefault(args);
             }
         }
         

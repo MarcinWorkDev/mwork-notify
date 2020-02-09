@@ -32,7 +32,7 @@ namespace MWork.Common.WebApi.Middleware
                 
                 if (ex.Data["HttpResponseSetStatus"] is int statusCode)
                 {
-                    if (Enum.TryParse<HttpStatusCode>(httpStatusCode.ToString(), out var httpStatus))
+                    if (Enum.TryParse<HttpStatusCode>(statusCode.ToString(), out var httpStatus))
                     {
                         httpStatusCode = (int)httpStatus;
                     }
