@@ -5,6 +5,8 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using MongoDB.Driver;
+using MWork.Common.WebApi.Extensions;
 using MWork.Common.WebApi.Middleware;
 using MWork.Notify.Services.Messages.Repositories;
 using MWork.Notify.Services.Messages.Services;
@@ -41,6 +43,8 @@ namespace MWork.Notify.Services.Messages
                 {
                     QueueName = "mwork-notify-dispatcher-push"
                 }));
+
+            services.AddSingleton<IMongoClient>(new MongoClient(new MongoUrl(Configuration.GetSecret("MONGODB_URL"))));
 
             services.AddSingleton<ErrorHandlingMiddleware>();
             services.AddControllers();
