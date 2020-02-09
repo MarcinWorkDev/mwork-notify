@@ -5,14 +5,12 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\..\Common\MWork.Common.Sdk\MWork.Common.Sdk.csproj" />
       <ProjectReference Include="..\..\Common\MWork.Common.WebApi\MWork.Common.WebApi.csproj" />
     </ItemGroup>
 
     <ItemGroup>
-      <PackageReference Include="AutoMapper" Version="9.0.0" />
       <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="8.0.0" />
-      <PackageReference Include="Microsoft.AspNetCore.JsonPatch" Version="3.1.1" />
+      <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="3.1.1" />
       <PackageReference Include="MongoDB.Driver" Version="2.10.1" />
     </ItemGroup>
 
