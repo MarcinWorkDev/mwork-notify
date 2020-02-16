@@ -1,18 +1,14 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
-using System.Threading.Tasks;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-using MongoDB.Driver;
-using MWork.Common.WebApi.Extensions;
-using MWork.Common.WebApi.Middleware;
+using MWork.Common.Sdk.WebApi.Extensions;
+using MWork.Common.Sdk.WebApi.Framework.ErrorHandling;
+using MWork.Common.Sdk.WebApi.Framework.Mongo;
+using MWork.Common.Sdk.WebApi.Framework.RabbitMq;
+using Endpoint = MWork.Notify.Services.Endpoints.Domain.Endpoint;
 
 namespace MWork.Notify.Services.Endpoints
 {
@@ -25,24 +21,36 @@ namespace MWork.Notify.Services.Endpoints
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
-        // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMediatR(Assembly.GetEntryAssembly());
-            services.AddSingleton<IMongoClient>(new MongoClient(new MongoUrl(Configuration.GetSecret("MONGODB_URL"))));
-            services.AddSingleton<ErrorHandlingMiddleware>();
-            services.AddControllers()
+            services
+                .AddMediatR(Assembly.GetEntryAssembly());
+            
+            services
+                .AddRabbitMq();
+
+            services
+                .AddMongo(o =>
+                {
+                    o.ConnectionString = Configuration.GetSecret("MONGODB_URL");
+                    o.Database = "notify";
+                })
+                .AddMongoRepository<Endpoint>("endpoints");
+            
+            services
+                .AddErrorHandlingMiddleware();
+            
+            services
+                .AddControllers()
                 .AddNewtonsoftJson();
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            app.UseMiddleware<ErrorHandlingMiddleware>();
-
-            app.UseRouting();
-            app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
+            app
+                .UseRouting()
+                .UseErrorHandlingMiddleware()
+                .UseEndpoints(endpoints => { endpoints.MapControllers(); });
         }
     }
 }

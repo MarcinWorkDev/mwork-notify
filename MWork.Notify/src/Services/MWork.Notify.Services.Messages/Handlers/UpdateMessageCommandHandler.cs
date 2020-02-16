@@ -5,17 +5,18 @@ using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
 using Microsoft.AspNetCore.JsonPatch;
+using MWork.Common.Sdk.Repository;
 using MWork.Notify.Services.Messages.Commands;
-using MWork.Notify.Services.Messages.Repositories;
+using MWork.Notify.Services.Messages.Domain;
 using Newtonsoft.Json.Serialization;
 
 namespace MWork.Notify.Services.Messages.Handlers
 {
     public class UpdateMessageCommandHandler : AsyncRequestHandler<UpdateMessageCommand>
     {
-        private readonly IMessageRepository _repository;
+        private readonly IDataRepository<Message> _repository;
 
-        public UpdateMessageCommandHandler(IMessageRepository repository)
+        public UpdateMessageCommandHandler(IDataRepository<Message> repository)
         {
             _repository = repository;
         }
@@ -24,7 +25,7 @@ namespace MWork.Notify.Services.Messages.Handlers
         {
             if ((request.Operations?.Any() ?? false) == false) return;
             
-            var message = await _repository.Get(request.MessageId);
+            var message = await _repository.GetOne(request.MessageId);
 
             if (message == default)
             {

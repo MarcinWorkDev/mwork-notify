@@ -1,0 +1,20 @@
+version: '3.3'
+services:
+  notify-queue:
+    image: rabbitmq:3-management
+    ports:
+      - 15672:15672
+      - 5672:5672
+    environment:
+      RABBITMQ_DEFAULT_USER: guest
+      RABBITMQ_DEFAULT_PASS: guest
+      #RABBITMQ_DEFAULT_USER_FILE: notify-nosql-db
+      #RABBITMQ_DEFAULT_PASS_FILE: root
+networks:
+  default:
+    driver: overlay
+#secrets:
+#  notify-nosql-db-user:
+#    external: true
+#  notify-nosql-db-password:
+#    external: true

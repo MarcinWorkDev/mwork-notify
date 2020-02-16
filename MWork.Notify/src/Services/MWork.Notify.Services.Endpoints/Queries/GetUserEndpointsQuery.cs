@@ -1,16 +1,17 @@
+using System;
 using System.Collections.Generic;
 using MediatR;
 using MWork.Notify.Services.Endpoints.Domain;
 
 namespace MWork.Notify.Services.Endpoints.Queries
 {
-    public class GetUserEndpointsQuery : IRequest<IEnumerable<UserEndpoint>>
+    public class GetUserEndpointsQuery : IRequest<IEnumerable<Endpoint>>
     {
-        public GetUserEndpointsQuery(string userId)
+        public GetUserEndpointsQuery(Guid userId)
         {
             UserId = userId;
         }
 
-        public string UserId { get; set; }
+        public Guid UserId { get; }
     }
 }

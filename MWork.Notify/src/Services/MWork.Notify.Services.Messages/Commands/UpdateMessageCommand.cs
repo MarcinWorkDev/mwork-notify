@@ -1,7 +1,5 @@
-using System.Collections;
 using System.Collections.Generic;
 using MediatR;
-using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.JsonPatch.Operations;
 
 namespace MWork.Notify.Services.Messages.Commands

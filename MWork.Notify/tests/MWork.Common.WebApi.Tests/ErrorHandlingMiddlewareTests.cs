@@ -3,8 +3,9 @@ using System.Net;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging.Abstractions;
+using Microsoft.Extensions.Options;
 using Moq;
-using MWork.Common.WebApi.Middleware;
+using MWork.Common.Sdk.WebApi.Framework.ErrorHandling;
 using Xunit;
 using Xunit.Abstractions;
 
@@ -28,8 +29,9 @@ namespace MWork.Common.WebApi.Tests
             var requestDelegateMock = new Mock<RequestDelegate>();
             requestDelegateMock
                 .Setup(x => x.Invoke(httpContext));
-            
-            var errorHandlingMid = new ErrorHandlingMiddleware(NullLogger<ErrorHandlingMiddleware>.Instance);
+
+            var options = new OptionsWrapper<ErrorHandlingMiddlewareOptions>(new ErrorHandlingMiddlewareOptions());
+            var errorHandlingMid = new ErrorHandlingMiddleware(NullLogger<ErrorHandlingMiddleware>.Instance, options);
             await errorHandlingMid.InvokeAsync(httpContext, requestDelegateMock.Object);
 
             Assert.Equal(200, httpContext.Response.StatusCode);
@@ -45,10 +47,11 @@ namespace MWork.Common.WebApi.Tests
                 .Setup(x => x.Invoke(httpContext))
                 .Throws(new Exception());
             
-            var errorHandlingMid = new ErrorHandlingMiddleware(NullLogger<ErrorHandlingMiddleware>.Instance);
+            var options = new OptionsWrapper<ErrorHandlingMiddlewareOptions>(new ErrorHandlingMiddlewareOptions());
+            var errorHandlingMid = new ErrorHandlingMiddleware(NullLogger<ErrorHandlingMiddleware>.Instance, options);
             await errorHandlingMid.InvokeAsync(httpContext, requestDelegateMock.Object);
 
-            Assert.Equal(ErrorHandlingMiddleware.DefaultErrorStatusCode, httpContext.Response.StatusCode);
+            Assert.Equal(options.Value.DefaultErrorStatusCode, httpContext.Response.StatusCode);
         }
         
         [Fact]
@@ -63,7 +66,8 @@ namespace MWork.Common.WebApi.Tests
                 .Setup(x => x.Invoke(httpContext))
                 .Throws(exception);
             
-            var errorHandlingMid = new ErrorHandlingMiddleware(NullLogger<ErrorHandlingMiddleware>.Instance);
+            var options = new OptionsWrapper<ErrorHandlingMiddlewareOptions>(new ErrorHandlingMiddlewareOptions());
+            var errorHandlingMid = new ErrorHandlingMiddleware(NullLogger<ErrorHandlingMiddleware>.Instance, options);
             await errorHandlingMid.InvokeAsync(httpContext, requestDelegateMock.Object);
 
             Assert.Equal((int)HttpStatusCode.NotFound, httpContext.Response.StatusCode);
@@ -81,10 +85,11 @@ namespace MWork.Common.WebApi.Tests
                 .Setup(x => x.Invoke(httpContext))
                 .Throws(exception);
             
-            var errorHandlingMid = new ErrorHandlingMiddleware(NullLogger<ErrorHandlingMiddleware>.Instance);
+            var options = new OptionsWrapper<ErrorHandlingMiddlewareOptions>(new ErrorHandlingMiddlewareOptions());
+            var errorHandlingMid = new ErrorHandlingMiddleware(NullLogger<ErrorHandlingMiddleware>.Instance, options);
             await errorHandlingMid.InvokeAsync(httpContext, requestDelegateMock.Object);
 
-            Assert.Equal(ErrorHandlingMiddleware.DefaultErrorStatusCode, httpContext.Response.StatusCode);
+            Assert.Equal(options.Value.DefaultErrorStatusCode, httpContext.Response.StatusCode);
         }
         
         [Fact]
@@ -99,10 +104,11 @@ namespace MWork.Common.WebApi.Tests
                 .Setup(x => x.Invoke(httpContext))
                 .Throws(exception);
             
-            var errorHandlingMid = new ErrorHandlingMiddleware(NullLogger<ErrorHandlingMiddleware>.Instance);
+            var options = new OptionsWrapper<ErrorHandlingMiddlewareOptions>(new ErrorHandlingMiddlewareOptions());
+            var errorHandlingMid = new ErrorHandlingMiddleware(NullLogger<ErrorHandlingMiddleware>.Instance, options);
             await errorHandlingMid.InvokeAsync(httpContext, requestDelegateMock.Object);
 
-            Assert.Equal(ErrorHandlingMiddleware.DefaultErrorStatusCode, httpContext.Response.StatusCode);
+            Assert.Equal(options.Value.DefaultErrorStatusCode, httpContext.Response.StatusCode);
         }
     }
 }

@@ -2,8 +2,8 @@ using System;
 using System.IO;
 using Microsoft.Extensions.Configuration;
 using Moq;
-using MWork.Common.WebApi.Extensions;
-using MWork.Common.WebApi.Helpers;
+using MWork.Common.Sdk.WebApi.Extensions;
+using MWork.Common.Sdk.WebApi.Helpers;
 using Xunit;
 
 namespace MWork.Common.WebApi.Tests

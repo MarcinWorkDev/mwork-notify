@@ -1,11 +1,11 @@
 using System;
 using System.Collections.Generic;
-using MWork.Notify.Services.Messages.Domain.Bases;
+using MWork.Common.Sdk.Repository.Types;
 using MWork.Notify.Services.Messages.Domain.Enums;
 
 namespace MWork.Notify.Services.Messages.Domain
 {
-    public class Message : IAuditBase, IUserBase
+    public class Message : IWithId
     {
         public string Id { get; set; }
         

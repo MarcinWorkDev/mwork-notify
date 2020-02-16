@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 using MWork.Notify.Services.Endpoints.Domain;
 
@@ -7,14 +8,12 @@ namespace MWork.Notify.Services.Endpoints.Repositories
 {
     public interface IEndpointRepository
     {
-        Task<UserEndpoint> Get(string id);
+        Task<Endpoint> GetOne(Guid id);
 
-        Task<IEnumerable<UserEndpoint>> GetByUser(string userId, DateTime modifiedFrom, DateTime? modifiedTo);
+        Task<IEnumerable<Endpoint>> GetAll(Expression<Func<Endpoint, bool>> filter);
         
-        Task Create(UserEndpoint endpoint);
+        Task Create(Endpoint endpoint);
         
-        Task Update(UserEndpoint endpoint);
-
-        Task Delete(string id);
+        Task Update(Guid id, Action<Endpoint> changes);
     }
 }

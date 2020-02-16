@@ -3,19 +3,19 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
+using MWork.Common.Sdk.Repository;
 using MWork.Notify.Services.Messages.Commands;
 using MWork.Notify.Services.Messages.Domain;
-using MWork.Notify.Services.Messages.Repositories;
 using MWork.Notify.Services.Messages.Services.Abstractions;
 
 namespace MWork.Notify.Services.Messages.Handlers
 {
     public class DispatchBasicMessageCommandHandler : AsyncRequestHandler<DispatchBasicMessageCommand>
     {
-        private readonly IMessageRepository _messageRepository;
+        private readonly IDataRepository<Message> _messageRepository;
         private readonly INotificationPublisherFactory _notificationPublisherFactory;
         
-        public DispatchBasicMessageCommandHandler(IMessageRepository messageRepository, INotificationPublisherFactory notificationPublisherFactory)
+        public DispatchBasicMessageCommandHandler(IDataRepository<Message> messageRepository, INotificationPublisherFactory notificationPublisherFactory)
         {
             _messageRepository = messageRepository;
             _notificationPublisherFactory = notificationPublisherFactory;

@@ -6,9 +6,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using MongoDB.Driver;
-using MWork.Common.WebApi.Extensions;
-using MWork.Common.WebApi.Middleware;
-using MWork.Notify.Services.Messages.Repositories;
+using MWork.Common.Sdk.WebApi.Extensions;
+using MWork.Common.Sdk.WebApi.Framework.ErrorHandling;
 using MWork.Notify.Services.Messages.Services;
 using MWork.Notify.Services.Messages.Services.Abstractions;
 using MWork.Notify.Services.Messages.Services.Models;
@@ -29,7 +28,7 @@ namespace MWork.Notify.Services.Messages
         {
             services.AddMediatR(Assembly.GetEntryAssembly());
             
-            services.AddSingleton<IMessageRepository, MessageRepository>();
+            //services.AddSingleton<IMessageRepository, MessageRepository>();
             //DataMapper.ValidateConfiguration();
             
             services.AddSingleton<INotificationPublisherFactory, NotificationPublisherFactory>();

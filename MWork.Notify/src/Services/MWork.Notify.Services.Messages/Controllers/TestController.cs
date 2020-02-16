@@ -3,9 +3,9 @@ using System.Threading.Tasks;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using MWork.Common.Sdk.Extensions;
+using MWork.Common.Sdk.Repository;
 using MWork.Notify.Services.Messages.Commands;
 using MWork.Notify.Services.Messages.Domain;
-using MWork.Notify.Services.Messages.Repositories;
 
 namespace MWork.Notify.Services.Messages.Controllers
 {
@@ -13,10 +13,10 @@ namespace MWork.Notify.Services.Messages.Controllers
     [Route("api/[controller]")]
     public class TestController : ControllerBase
     {
-        private readonly IMessageRepository _repository;
+        private readonly IDataRepository<Message> _repository;
         private readonly IMediator _mediator;
 
-        public TestController(IMessageRepository repository, IMediator mediator)
+        public TestController(IDataRepository<Message> repository, IMediator mediator)
         {
             _repository = repository;
             _mediator = mediator;
@@ -25,13 +25,18 @@ namespace MWork.Notify.Services.Messages.Controllers
         [HttpGet]
         public async Task<ActionResult> Get()
         {
-            return Ok(await _repository.GetByUser("zxc", DateTime.MinValue, DateTime.MaxValue));
+            return Ok(await _repository.GetAll(x =>
+                    x.UserId == "zxc"
+                    && x.ModifiedAtUtc > DateTime.MinValue
+                    && x.ModifiedAtUtc < DateTime.MaxValue
+                )
+            );
         }
         
         [HttpGet("{id}")]
         public async Task<ActionResult> Get(string id)
         {
-            return Ok(await _repository.Get(id));
+            return Ok(await _repository.GetOne(id));
         }
         
         [HttpPost]
@@ -45,7 +50,7 @@ namespace MWork.Notify.Services.Messages.Controllers
         [HttpDelete("{id}")]
         public async Task<ActionResult> Delete(string id)
         {
-            await _repository.SoftDelete(id);
+            await _repository.Update(id, m => m.Deleted = true);
             return Accepted();
         }
 
