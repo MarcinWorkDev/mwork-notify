@@ -1,16 +1,18 @@
 using System;
+using System.Collections.Generic;
 
 namespace MWork.Common.Sdk.Abstractions.Queue
 {
     public interface ICorrelationContext
     {
-        Guid Id { get; }
+        Guid MessageId { get; }
+        
         Guid UserId { get; }
-        string ResourceId { get; }
-        string Name { get; }
-        string Origin { get; }
+        IList<string> UserScopes { get; }
+        
         string Resource { get; }
-        string Culture { get; }
-        DateTime CreatedAt { get; }
+        string ResourceId { get; }
+        
+        DateTime CreatedAtUtc { get; }
     }
 }

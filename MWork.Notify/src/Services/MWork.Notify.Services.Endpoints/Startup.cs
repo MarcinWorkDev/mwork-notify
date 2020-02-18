@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Reflection;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
@@ -8,6 +9,8 @@ using MWork.Common.Sdk.WebApi.Extensions;
 using MWork.Common.Sdk.WebApi.Framework.ErrorHandling;
 using MWork.Common.Sdk.WebApi.Framework.Mongo;
 using MWork.Common.Sdk.WebApi.Framework.RabbitMq;
+using Serilog;
+using Serilog.Core;
 using Endpoint = MWork.Notify.Services.Endpoints.Domain.Endpoint;
 
 namespace MWork.Notify.Services.Endpoints
@@ -27,7 +30,13 @@ namespace MWork.Notify.Services.Endpoints
                 .AddMediatR(Assembly.GetEntryAssembly());
             
             services
-                .AddRabbitMq();
+                .AddRabbitMq(o =>
+                {
+                    o.Hostnames = new List<string>()
+                    {
+                        "docker-farm"
+                    };
+                });
 
             services
                 .AddMongo(o =>
@@ -47,6 +56,11 @@ namespace MWork.Notify.Services.Endpoints
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            Log.Logger = new LoggerConfiguration()
+                .Enrich.FromLogContext()
+                .WriteTo.Console()
+                .CreateLogger();
+            
             app
                 .UseRouting()
                 .UseErrorHandlingMiddleware()
