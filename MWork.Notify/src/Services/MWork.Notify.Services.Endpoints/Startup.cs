@@ -1,6 +1,4 @@
 using System.Collections.Generic;
-using System.Reflection;
-using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -9,8 +7,8 @@ using MWork.Common.Sdk.WebApi.Extensions;
 using MWork.Common.Sdk.WebApi.Framework.ErrorHandling;
 using MWork.Common.Sdk.WebApi.Framework.Mongo;
 using MWork.Common.Sdk.WebApi.Framework.RabbitMq;
+using MWork.Notify.Services.Endpoints.Publishers.Events;
 using Serilog;
-using Serilog.Core;
 using Endpoint = MWork.Notify.Services.Endpoints.Domain.Endpoint;
 
 namespace MWork.Notify.Services.Endpoints
@@ -27,9 +25,6 @@ namespace MWork.Notify.Services.Endpoints
         public void ConfigureServices(IServiceCollection services)
         {
             services
-                .AddMediatR(Assembly.GetEntryAssembly());
-            
-            services
                 .AddRabbitMq(o =>
                 {
                     o.Hostnames = new List<string>()
@@ -38,6 +33,7 @@ namespace MWork.Notify.Services.Endpoints
                     };
                 });
 
+            // Repository
             services
                 .AddMongo(o =>
                 {
@@ -46,9 +42,11 @@ namespace MWork.Notify.Services.Endpoints
                 })
                 .AddMongoRepository<Endpoint>("endpoints");
             
+            // Middleware
             services
                 .AddErrorHandlingMiddleware();
             
+            // Common API
             services
                 .AddControllers()
                 .AddNewtonsoftJson();
@@ -60,6 +58,10 @@ namespace MWork.Notify.Services.Endpoints
                 .Enrich.FromLogContext()
                 .WriteTo.Console()
                 .CreateLogger();
+
+            app
+                .UseRabbitMq()
+                .SubscribeEvent<EndpointCreated>();
             
             app
                 .UseRouting()

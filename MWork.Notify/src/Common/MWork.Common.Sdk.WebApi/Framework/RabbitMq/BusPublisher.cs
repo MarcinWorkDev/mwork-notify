@@ -1,6 +1,7 @@
 using System;
+using System.Threading;
 using System.Threading.Tasks;
-using MWork.Common.Sdk.Abstractions.Queue;
+using MWork.Common.Sdk.Abstractions.CQRS;
 using RawRabbit;
 using RawRabbit.Enrichers.MessageContext;
 
@@ -15,15 +16,15 @@ namespace MWork.Common.Sdk.WebApi.Framework.RabbitMq
             _busClient = busClient;
         }
 
-        public async Task SendAsync<TCommand>(TCommand command, ICorrelationContext context = null)
-            where TCommand : IQueueCommand
-            => await QueueAsync(command, context);
+        public async Task SendAsync<TCommand>(TCommand command, ICorrelationContext context = null, CancellationToken cancellationToken = default)
+            where TCommand : ICommand
+            => await QueueAsync(command, context, cancellationToken);
 
-        public async Task PublishAsync<TEvent>(TEvent @event, ICorrelationContext context = null)
-            where TEvent : IQueueEvent
-            => await QueueAsync(@event, context);
+        public async Task PublishAsync<TEvent>(TEvent @event, ICorrelationContext context = null, CancellationToken cancellationToken = default)
+            where TEvent : IEvent
+            => await QueueAsync(@event, context, cancellationToken);
 
-        private async Task QueueAsync<T>(T item, ICorrelationContext context = null)
+        private async Task QueueAsync<T>(T item, ICorrelationContext context = null, CancellationToken cancellationToken = default)
             => await _busClient.PublishAsync(item, async ctx =>
             {
                 if (context != null)
@@ -31,10 +32,10 @@ namespace MWork.Common.Sdk.WebApi.Framework.RabbitMq
                     ctx.UseMessageContext(context);
                 }
                 
-                await Task.WhenAll(_busClient.DeclareExchangeAsync<T>(), _busClient.DeclareQueueAsync<T>());
-                await _busClient.BindQueueAsync<T>();
+                await Task.WhenAll(_busClient.DeclareExchangeAsync<T>(ct: cancellationToken), _busClient.DeclareQueueAsync<T>(ct: cancellationToken));
+                await _busClient.BindQueueAsync<T>(ct: cancellationToken);
 
                 ctx.UsePublishAcknowledge();
-            });
+            }, token: cancellationToken);
     }
 }

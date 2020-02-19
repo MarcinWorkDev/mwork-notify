@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Console;
-using MWork.Common.Sdk.Abstractions.Queue;
+using MWork.Common.Sdk.Abstractions.CQRS;
 using MWork.Common.Sdk.WebApi.Framework.Mongo;
 using RawRabbit;
 using RawRabbit.Configuration;
@@ -46,22 +46,20 @@ namespace MWork.Common.Sdk.WebApi.Framework.RabbitMq
             
             var assembly = Assembly.GetCallingAssembly();
 
-            /*var registerTypes = new List<Type>()
+            var registerTypes = new List<string>()
             {
-                typeof(IQueueEventHandler<>),
-                typeof(IQueueCommandHandler<>)
+                typeof(IEventHandler<>).Name,
+                typeof(ICommandHandler<>).Name
             };
 
             var types = assembly.GetExportedTypes()
-                .Where(x => x.GetInterfaces().Any(t => registerTypes.Contains(t)));
+                .Where(x => x.GetInterfaces().Any(t => registerTypes.Contains(t.Name))); // TODO: Can be better / maybe MediatR?
 
             var busClient = services.BuildServiceProvider().GetService<IBusClient>();
             foreach (var type in types)
             {
                 services.AddScoped(type);
-                busClient.DeclareQueueAsync();
-                busClient.BindQueueAsync<TEvent>();
-            }*/
+            }
             
             services.AddSingleton<IBusPublisher, BusPublisher>();
             return services;

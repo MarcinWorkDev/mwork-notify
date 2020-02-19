@@ -3,7 +3,7 @@ using MediatR;
 using Microsoft.AspNetCore.JsonPatch;
 using MWork.Notify.Services.Endpoints.Domain;
 
-namespace MWork.Notify.Services.Endpoints.Commands
+namespace MWork.Notify.Services.Endpoints.Consumers.Commands
 {
     public class UpdateEndpointCommand : IRequest
     {

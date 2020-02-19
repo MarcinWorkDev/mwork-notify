@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace MWork.Common.Sdk.Abstractions.Queue
+namespace MWork.Common.Sdk.Abstractions.CQRS
 {
     public interface ICorrelationContext
     {

@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-using MWork.Common.Sdk.Abstractions.Queue;
+using MWork.Common.Sdk.Abstractions.CQRS;
 
 namespace MWork.Common.Sdk.WebApi.Framework.RabbitMq
 {
