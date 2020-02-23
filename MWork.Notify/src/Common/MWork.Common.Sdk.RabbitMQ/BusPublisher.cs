@@ -1,11 +1,9 @@
-using System;
 using System.Threading;
 using System.Threading.Tasks;
-using MWork.Common.Sdk.Abstractions.CQRS;
 using RawRabbit;
 using RawRabbit.Enrichers.MessageContext;
 
-namespace MWork.Common.Sdk.WebApi.Framework.RabbitMq
+namespace MWork.Common.Sdk.RabbitMQ
 {
     public class BusPublisher : IBusPublisher
     {

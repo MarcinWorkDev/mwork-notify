@@ -1,7 +1,6 @@
 using System.Threading;
-using MWork.Common.Sdk.Abstractions.CQRS;
 
-namespace MWork.Common.Sdk.WebApi.Framework.RabbitMq
+namespace MWork.Common.Sdk.RabbitMQ
 {
     public interface IBusSubscriber
     {

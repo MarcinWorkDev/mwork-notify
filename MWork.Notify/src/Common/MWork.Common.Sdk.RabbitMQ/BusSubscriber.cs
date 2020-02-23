@@ -1,13 +1,10 @@
 using System;
-using System.Reflection;
 using System.Threading;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
-using MWork.Common.Sdk.Abstractions.CQRS;
-using MWork.Common.Sdk.Extensions;
 using RawRabbit;
 
-namespace MWork.Common.Sdk.WebApi.Framework.RabbitMq
+namespace MWork.Common.Sdk.RabbitMQ
 {
     public class BusSubscriber : IBusSubscriber
     {

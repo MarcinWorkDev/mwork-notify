@@ -1,5 +1,5 @@
 using System;
-using MWork.Common.Sdk.Abstractions.Repository.Types;
+using MWork.Common.Sdk.Repositories.Types;
 
 namespace MWork.Notify.Services.Endpoints.Domain
 {

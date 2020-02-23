@@ -1,11 +1,11 @@
 using System;
 using System.Collections.Generic;
-using MediatR;
+using MWork.Common.Sdk.CQRS;
 using MWork.Notify.Services.Endpoints.Domain;
 
 namespace MWork.Notify.Services.Endpoints.Consumers.Queries
 {
-    public class GetUserEndpointsQuery : IRequest<IEnumerable<Endpoint>>
+    public class GetUserEndpointsQuery : IQuery<IEnumerable<Endpoint>>
     {
         public GetUserEndpointsQuery(Guid userId)
         {

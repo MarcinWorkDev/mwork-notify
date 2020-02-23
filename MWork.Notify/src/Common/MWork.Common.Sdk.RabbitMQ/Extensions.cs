@@ -3,21 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Logging.Console;
-using MWork.Common.Sdk.Abstractions.CQRS;
-using MWork.Common.Sdk.WebApi.Framework.Mongo;
 using RawRabbit;
 using RawRabbit.Configuration;
-using RawRabbit.Configuration.Queue;
 using RawRabbit.DependencyInjection.ServiceCollection;
 using RawRabbit.Enrichers.MessageContext;
 using RawRabbit.Instantiation;
-using RawRabbit.Logging;
 
-namespace MWork.Common.Sdk.WebApi.Framework.RabbitMq
+namespace MWork.Common.Sdk.RabbitMQ
 {
     public static class Extensions
     {
@@ -40,7 +33,6 @@ namespace MWork.Common.Sdk.WebApi.Framework.RabbitMq
                     Password = options.Password
                 },
                 Plugins = plg => plg
-                    .UseAttributeRouting()
                     .UseMessageContext(ctx => new CorrelationContext())
             });
             

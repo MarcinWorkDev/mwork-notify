@@ -1,4 +1,4 @@
-using MWork.Common.Sdk.Abstractions.CQRS;
+using MWork.Common.Sdk.CQRS;
 
 namespace MWork.Notify.Services.Endpoints.Publishers.Events
 {

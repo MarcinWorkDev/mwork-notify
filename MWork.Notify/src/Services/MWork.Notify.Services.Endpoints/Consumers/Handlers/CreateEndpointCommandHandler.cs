@@ -1,15 +1,13 @@
 using System.Threading;
 using System.Threading.Tasks;
-using MediatR;
 using Microsoft.Extensions.Logging;
-using MWork.Common.Sdk.Abstractions.CQRS;
-using MWork.Common.Sdk.WebApi.Framework.RabbitMq;
+using MWork.Common.Sdk.CQRS;
 using MWork.Notify.Services.Endpoints.Consumers.Commands;
 using MWork.Notify.Services.Endpoints.Publishers.Events;
 
 namespace MWork.Notify.Services.Endpoints.Consumers.Handlers
 {
-    public class CreateEndpointCommandHandler : AsyncRequestHandler<CreateEndpointCommand>
+    public class CreateEndpointCommandHandler : ICommandHandler<CreateEndpointCommand>
     {
         private readonly IBusPublisher _publisher;
         private readonly ILogger<CreateEndpointCommandHandler> _logger;
@@ -20,11 +18,11 @@ namespace MWork.Notify.Services.Endpoints.Consumers.Handlers
             _logger = logger;
         }
 
-        protected override async Task Handle(CreateEndpointCommand request, CancellationToken cancellationToken)
+        public async Task HandleAsync(CreateEndpointCommand command, ICorrelationContext context, CancellationToken cancellationToken)
         {
             _logger.LogDebug("Debug test");
             _logger.LogInformation("Information test");
-            await _publisher.QueueEventAsync(new EndpointCreated() {EndpointName = "dasdadas"}, new CorrelationContext()
+            await _publisher.PublishAsync(new EndpointCreated() {EndpointName = "dasdadas"}, new CorrelationContext()
             {
                 Resource = "endpoints",
                 ResourceId = request.Id.ToString()

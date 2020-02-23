@@ -1,11 +1,11 @@
 using System;
-using MediatR;
 using Microsoft.AspNetCore.JsonPatch;
+using MWork.Common.Sdk.CQRS;
 using MWork.Notify.Services.Endpoints.Domain;
 
 namespace MWork.Notify.Services.Endpoints.Consumers.Commands
 {
-    public class UpdateEndpointCommand : IRequest
+    public class UpdateEndpointCommand : ICommand
     {
         public UpdateEndpointCommand(Guid id, JsonPatchDocument<Endpoint> operations)
         {

@@ -1,10 +1,10 @@
 using System;
-using MediatR;
+using MWork.Common.Sdk.CQRS;
 using MWork.Notify.Services.Endpoints.Domain;
 
 namespace MWork.Notify.Services.Endpoints.Consumers.Commands
 {
-    public class CreateEndpointCommand : IRequest
+    public class CreateEndpointCommand : ICommand
     {
         public Guid Id { get; set; }
         

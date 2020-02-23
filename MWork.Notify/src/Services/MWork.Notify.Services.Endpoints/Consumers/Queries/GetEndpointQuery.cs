@@ -1,10 +1,10 @@
 using System;
-using MediatR;
+using MWork.Common.Sdk.CQRS;
 using MWork.Notify.Services.Endpoints.Domain;
 
 namespace MWork.Notify.Services.Endpoints.Consumers.Queries
 {
-    public class GetEndpointQuery : IRequest<Endpoint>
+    public class GetEndpointQuery : IQuery<Endpoint>
     {
         public GetEndpointQuery(Guid id)
         {

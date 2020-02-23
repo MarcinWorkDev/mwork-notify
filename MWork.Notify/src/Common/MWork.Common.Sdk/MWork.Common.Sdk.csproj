@@ -5,7 +5,8 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <Folder Include="Mediator" />
+      <Folder Include="Extensions" />
+      <Folder Include="Helpers" />
     </ItemGroup>
 
 </Project>
